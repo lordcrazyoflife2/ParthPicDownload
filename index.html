@@ -1,45 +1,12 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>Parth</title>
   <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
-
 <body>
-   <script src=
-"https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
-<button onclick="download()">Download</button>
-<script>
-    let downloadUrl  = 'https://lordcrazyoflife.github.io/parthpicTest/parth.png';
-    let downloadName = '/parth.png';
-    function download(){
-        axios({
-            url: downloadUrl,
-            method:'GET',
-            responseType: 'blob'
-        })
-        .then((response) => {
-            const url = window.URL.createObjectURL(new Blob([response.data]));
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', downloadName);
-            document.body.appendChild(link);
-            link.click();
-        });
-    }        
-</script>
-   
-  <img src= "parth.png"></src>
-
-  <!--
-  This script places a badge on your repl's full-browser view back to your repl's cover
-  page. Try various colors for the theme: dark, light, red, orange, yellow, lime, green,
-  teal, blue, blurple, magenta, pink!
-  -->
- 
+  <img src="parth.png" download="parth.png"></img>
 </body>
-
 </html>
