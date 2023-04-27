@@ -9,13 +9,28 @@
 </head>
 
 <body>
-    <script src="script.js"></script>
-   Parth
-    <script type="text/javascript">
-    window.onload = function(){
-      ocument.location = 'parth.png';
-    }
-    </script>
+   <script src=
+"https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+<button onclick="download()">Download</button>
+<script>
+    let downloadUrl  = 'https://lordcrazyoflife.github.io/parthpicTest/parth.png';
+    let downloadName = '/parth.png';
+    function download(){
+        axios({
+            url: downloadUrl,
+            method:'GET',
+            responseType: 'blob'
+        })
+        .then((response) => {
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', downloadName);
+            document.body.appendChild(link);
+            link.click();
+        });
+    }        
+</script>
    
   <img src= "parth.png"></src>
 
