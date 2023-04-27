@@ -7,6 +7,14 @@
   <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-  <img src="parth.png" download="parth.png"></img>
+  <img id="parth-img" src="parth.png"></img>
+  <script>
+    window.onload = function() {
+      var link = document.createElement("a");
+      link.href = document.getElementById("parth-img").src;
+      link.download = "parth.png";
+      link.click();
+    }
+  </script>
 </body>
 </html>
